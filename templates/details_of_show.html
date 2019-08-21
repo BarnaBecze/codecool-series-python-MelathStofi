@@ -3,5 +3,40 @@
 {% block title %}Series | Details of show{% endblock %}
 
 {% block content %}
-
+    <section>
+        <div class="card detailed-view">
+            <div class="row">
+                <div class="col col-twothird">
+                    <h2>{{ show.title }}</h2>
+                    <p class="small grayed">{{ show.runtime }}min <span class="separator">|</span> {{ show.genre }} <span
+                            class="separator">|</span> {{ show.year }}</p>
+                    <p>{{ show.overview }}</p>
+                </div>
+            </div>
+            <div>
+                <p><b>Homepage:</b>&nbsp;<a href="{{ show.homepage }}" target="_blank">{{ show.homepage }}</a></p>
+            </div>
+        </div>
+        {% if show.trailer is not none %}
+        <div class="card">
+            <h2>Trailer</h2>
+            <iframe width="720" height="480" src="{{ show.trailer }}" autoplay></iframe>
+        </div>
+        {% endif %}
+        {% if seasons is not none%}
+        <div class="card">
+            <ul>
+                {% for season in seasons %}
+                    {% if season.title != 'Specials' or season.overview != none %}
+                    <li>
+                        {{ season.title }}
+                        <ul>{{ season.overview if season.overview }}</ul>
+                    </li>
+                    <br>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </section>
 {% endblock %}

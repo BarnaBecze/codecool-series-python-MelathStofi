@@ -28,10 +28,31 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
-
+    <!--script src="{{ url_for('static', filename='js/ui.js') }}" defer></script-->
 </head>
 
 <body>
-    {% block content %}{% endblock %}
+    <div id="body-wrapper">
+        <header class="clearfix">
+            <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
+            <a href="/">
+            <span id="header-title" class="title">
+                            Codecool Series DB
+                        </span>
+            </a>
+            <div id="header-auth">
+                <button type="button" id="bt_register">Register</button>
+                <button type="button" id="bt_login">Login</button>
+            </div>
+        </header>
+            {% block content %}{% endblock %}
+        <footer>
+            Copyright, bla-bla
+        </footer>
+    </div>
+    <div class="background">
+        <div class="dark-blue-layer"></div>
+        <div class="light-blue-layer"></div>
+    </div>
 </body>
 </html>

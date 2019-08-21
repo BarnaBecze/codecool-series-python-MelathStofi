@@ -5,46 +5,27 @@
 {% endblock %}
 
 {% block content %}
-    <div id="body-wrapper">
-        <header class="clearfix">
-            <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
-            <span id="header-title" class="title">
-                            Codecool Series DB
-                        </span>
-            <div id="header-auth">
-                <button type="button" id="bt_register">Register</button>
-                <button type="button" id="bt_login">Login</button>
-            </div>
-        </header>
-        <section>
-            <h1 class="title text-center">Welcome page</h1>
-            <div class="card">
-                <h2>Welcome TV show lovers!</h2>
-                <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
-                <p></p>
-                <p>Okay, actually this is a designed dumb page without any logic.</p>
-                <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for
-                    in-depth
-                    navigation.
-                </p>
-                <p><a href="15_most_rated_shows.html">15 most rated shows</a></p>
-            </div>
-            <div class="card">
-                <ul>
-                    {% for show in shows %}
-                        <li>
-                            <a href="{{ '/tv-show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </section>
-        <footer>
-            Copyright, bla-bla
-        </footer>
-    </div>
-    <div class="background">
-        <div class="dark-blue-layer"></div>
-        <div class="light-blue-layer"></div>
-    </div>
+    <section>
+        <h1 class="title text-center">Welcome page</h1>
+        <div class="card">
+            <h2>Welcome TV show lovers!</h2>
+            <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
+            <p></p>
+            <p>Okay, actually this is a designed dumb page without any logic.</p>
+            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for
+                in-depth
+                navigation.
+            </p>
+            <p><a href="/shows-by-rating">15 most rated shows</a></p>
+        </div>
+        <div class="card">
+            <ul>
+                {% for show in shows %}
+                    <li>
+                        <a href="{{ '/tv-show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
 {% endblock %}

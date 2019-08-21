@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Series | Most Rated Shows
+{% endblock %}
+
+{% block content %}
+    <section>
+        <div class="card">
+            <h1>Most Rated Shows</h1>
+        </div>
+        <div class="card">
+            <div id="pagination">
+                <button id="back-button">Back</button>
+                <button id="next-button">Next</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Release Year</th>
+                        <th>Average Runtime Length</th>
+                        <th>First Genre</th>
+                        <th>Rating</th>
+                        <th>Trailer</th>
+                        <th>Homepage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for show in shows %}
+                            <tr>
+                                <td>{{ show.title }}</td>
+                                <td>{{ show.year }}</td>
+                                <td>{{ show.runtime }}</td>
+                                <td>{{ show.genre }}</td>
+                                <td>{{ show.rating }}</td>
+                                <td><a href="{{ show.trailer }}" target="_blank">{{ 'Link' if show.trailer }}</a></td>
+                                <td><a href="{{ show.homepage }}" target="_blank">{{ 'Link ' if show.homepage }}</a></td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}
