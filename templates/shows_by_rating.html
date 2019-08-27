@@ -11,8 +11,11 @@
         </div>
         <div class="card">
             <div id="pagination">
-                <button id="back-button">Back</button>
-                <button id="next-button">Next</button>
+                <form action="/shows-by-rating" method="get">
+                    <button id="back-button" name="back" type="submit">Back</button>
+                    <input type="hidden" value="ps">
+                    <button id="next-button" name="next" type="submit">Next</button>
+                </form>
             </div>
             <table>
                 <thead>

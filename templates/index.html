@@ -17,8 +17,25 @@
                 navigation.
             </p>
             <p><a href="/shows-by-rating">15 most rated shows</a></p>
+            <p><a href="/episodes-for-each-shows">Number of episodes for each shows</a></p>
+            <p><a href='/top-10-actors-by-character'>Top 10 actors who played the most characters</a></p>
+            <p>
+                10 most rated shows by genre:
+                <form action="/ten-most-rated-shows" method="get">
+                    <select name="genre">
+                        {% for genre in genre_selection %}
+                            <option value="{{ genre.name }}">{{ genre.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Go!</button>
+                </form>
+            </p>
+            <p><a href="/what-a-year">Years shows between 1970 and 2010</a> </p>
         </div>
         <div class="card">
+            <form name="search-form" action="/" method="get">
+                <input name="search" placeholder="Search..."> <button type="submit">Go!</button>
+            </form>
             <ul>
                 {% for show in shows %}
                     <li>

@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Ten most rated {{ genre }} shows
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>Ten most rated {{ genre }} shows</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title of show</th>
+                    <th>Starting date</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+                {% for show in shows %}
+                    <tr>
+                        <td>{{ show.title }}</td>
+                        <td align="center">{{ show.year }}</td>
+                        <td align="center">
+                            {{ show.rating }}
+                            {% for i in range(10) %}
+                                {% if i >= show.rating|round %}
+                                    <i class="far fa-star" data-index="{{ i }}"></i>
+                                {% else %}
+                                    <i class="fas fa-star" data-index="{{ i }}"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+        </table>
+    </div>
+{% endblock %}

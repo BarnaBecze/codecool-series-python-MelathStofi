@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block title %}Top 10 actors by character{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h1>Top 10 actors who played the most characters</h1>
+        <ol>
+            {% for actor in actors %}
+                <li>
+                    {{ actor.name }} | {{ actor.characters }}
+                    {% if actor.medal %}
+                        <img class="medal" src="{{ actor.medal }}" width="30" height="30">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}

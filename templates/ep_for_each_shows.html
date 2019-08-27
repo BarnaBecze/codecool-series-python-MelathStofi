@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}Episodes for each shows{% endblock %}
+{% block content %}
+    <div class="card">
+        <h1>Number of episodes for each shows</h1>
+    </div>
+    <div class="card">
+        <ul>
+            {% for show in shows %}
+                <li>
+                    {{ show.title }}
+                    {% if show.is_long %}
+                        <i class="fas fa-expand"></i>
+                    {% else %}
+                        <i class="fas fa-compress"></i>
+                    {% endif %}
+                    <ul>
+                        {{ show.episodes }}
+                    </ul>
+
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

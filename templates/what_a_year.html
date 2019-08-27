@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %}What a year{% endblock %}
+
+{% block content %}
+    {% for year in years %}
+        <div class="my-card">
+            <p><h4>{{ year.year }}</h4></p>
+            <p><h3>{{ year.avg_rating }}</h3></p>
+            <p><h6>{{ year.shows }} shows</h6></p>
+        </div>
+    {% endfor %}
+{% endblock %}
