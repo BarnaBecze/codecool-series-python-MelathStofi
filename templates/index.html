@@ -36,8 +36,8 @@
     <header class="clearfix">
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">
-                        Codecool Series DB
-                    </span>
+            Codecool Series DB
+        </span>
         <div id="header-auth">
             <button type="button" id="bt_register">Register</button>
             <button type="button" id="bt_login">Login</button>
@@ -56,13 +56,37 @@
             </p>
         </div>
         <div class="card">
-            <ul>
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Release Year</th>
+                    <th>Average Runtime</th>
+                    <th>Genre</th>
+                    <th>Rating</th>
+                    <th class="action-column">Links</th>
+                </tr>
+                </thead>
+                <tbody id="showsBody">
                 {% for show in shows %}
-                    <li>
-                        <a href="{{ '/tv-show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
-                    </li>
+                    <tr hidden>
+                        <td>{{ show.title }}</td>
+                        <td>{{ show.year }}</td>
+                        <td>{{ show.runtime }}</td>
+                        {% set genre_list = show.genre.split(', ')[:3] %}
+                        <td>{{ genre_list | join(', ') }}</td>
+                        <td>{{ show.rating }}</td>
+                        <td class="ellipsis"><a href="{{ show.trailer if show.trailer }}">Trailer</a><br><a
+                                href="{{ show.homepage if show.homepage }}">Homepage</a>
+                        </td>
+                    </tr>
                 {% endfor %}
-            </ul>
+                </tbody>
+            </table>
+            <nav aria-label="page navigation">
+                <button class="btn-pagination" id="showAll">Show more</button>
+                <button class="btn-pagination" id="hideShows" hidden>Show less</button>
+            </nav>
         </div>
     </section>
     <footer>
@@ -73,5 +97,6 @@
     <div class="dark-blue-layer"></div>
     <div class="light-blue-layer"></div>
 </div>
+<script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
