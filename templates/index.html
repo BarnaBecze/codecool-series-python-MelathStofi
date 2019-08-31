@@ -10,6 +10,8 @@
     <!-- Import Montserrat font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
+    <script src="https://kit.fontawesome.com/344b350062.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <!-- Normalize.css fixes lot of differences between browsers default styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
@@ -59,18 +61,22 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Release Year</th>
-                    <th>Average Runtime</th>
-                    <th>Genre</th>
-                    <th>Rating</th>
+                    <th data-sort-type="title" data-sort-direction="asc">Title</th>
+                    <th data-sort-type="year" data-sort-direction="asc">Release Year</th>
+                    <th data-sort-type="runtime" data-sort-direction="asc">Average Runtime</th>
+                    <th data-sort-type="genre" data-sort-direction="asc">Genre</th>
+                    <th data-sort-type="rating" data-sort-direction="asc">Rating</th>
                     <th class="action-column">Links</th>
                 </tr>
                 </thead>
                 <tbody id="showsBody">
                 {% for show in shows %}
                     <tr hidden>
-                        <td>{{ show.title }}</td>
+                        <td>
+                            <div class="tooltip"><a id="redirectToDetails" href="#showAll">{{ show.title }}</a>
+                                <span class="tooltiptext">See more details</span>
+                            </div>
+                        </td>
                         <td>{{ show.year }}</td>
                         <td>{{ show.runtime }}</td>
                         {% set genre_list = show.genre.split(', ')[:3] %}
@@ -87,6 +93,19 @@
                 <button class="btn-pagination" id="showAll">Show more</button>
                 <button class="btn-pagination" id="hideShows" hidden>Show less</button>
             </nav>
+        </div>
+        <div id="detailed-show" class="card detailed-view">
+            <div class="row">
+                <div class="col col-twothird">
+                    <h2 id="show-title">Show Title</h2>
+                    <p class="small grayed">Avg. runtime <span class="separator">|</span> Genres <span
+                            class="separator">|</span> Year <span class="separator">|</span> Ratings </p>
+                    <p id="overview"> Overview </p>
+                </div>
+            </div>
+            <div>
+                <p><b>Stars:</b></p>
+            </div>
         </div>
     </section>
     <footer>
