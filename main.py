@@ -16,21 +16,19 @@ def index():
     return render_template('index.html', shows=shows)
 
 
-@app.route('/all-shows')
-@cache.cached()
-def get_all_shows():
-    shows = queries.get_shows()
+@app.route('/<title>')
+def get_title_details(title):
+    shows = queries.get_show_details(title)
     resp = []
     for show in shows:
         resp.append({
             "title": dumps(show['title']),
-            "year": dumps(show['year']),
+            "year": dumps(str(show['year'])),
             "runtime": dumps(show['runtime']),
-            "rating": dumps(show['rating']),
-            "homepage": dumps(show['homepage']),
-            "trailer": dumps(show['trailer'])
+            "rating": dumps(str(show['rating'])),
+            "genre": dumps(show['genre']),
+            "overview": dumps(show['overview'])
         })
-    print(resp)
     return make_response(jsonify(resp), 200)
 
 
